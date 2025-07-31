@@ -14,8 +14,20 @@ public class MenuItemService {
         this.menuItemRepository = menuItemRepository;
     }
 
-    public MenuItem getMenuItemById(Integer id) {
-        return menuItemRepository.findById(id).orElse(null);
+    public MenuItem getMenuItemById(Integer menuItemId) {
+        return menuItemRepository.findById(menuItemId).orElse(null);
+    }
+
+    public MenuItem updateMenuItem(Integer menuItemId, MenuItem menuItem) {
+        MenuItem existingMenuItem = getMenuItemById(menuItemId);
+        if (existingMenuItem != null) {
+            existingMenuItem.setName(menuItem.getName());
+            existingMenuItem.setPrice(menuItem.getPrice());
+            existingMenuItem.setDescription(menuItem.getDescription());
+            existingMenuItem.setCategory(menuItem.getCategory());
+            return menuItemRepository.save(existingMenuItem);
+        }
+        return null;
     }
 
     public MenuItem saveMenuItem(MenuItem menuItem) {

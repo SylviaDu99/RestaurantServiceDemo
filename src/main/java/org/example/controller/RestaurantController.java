@@ -33,6 +33,18 @@ public class RestaurantController {
         return ResponseEntity.status(201).body(createdRestaurant);
     }
 
+    @PutMapping("/{restaurantId}")
+    public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Integer restaurantId, @RequestBody @Valid Restaurant restaurant, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        Restaurant updatedRestaurant = restaurantService.updateRestaurant(restaurantId, restaurant);
+        if (updatedRestaurant == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updatedRestaurant);
+    }
+
     @DeleteMapping("/{restaurantId}")
     public ResponseEntity<Void> deleteRestaurant(@PathVariable Integer restaurantId) {
         restaurantService.deleteRestaurant(restaurantId);

@@ -15,12 +15,24 @@ public class RestaurantService {
         this.restaurantRepository = restaurantRepository;
     }
 
-    public Restaurant getRestaurantById(Integer id) {
-        return restaurantRepository.findById(id).orElse(null);
+    public Restaurant getRestaurantById(Integer restaurantId) {
+        return restaurantRepository.findById(restaurantId).orElse(null);
     }
 
     public Restaurant saveRestaurant(Restaurant restaurant) {
         return restaurantRepository.save(restaurant);
+    }
+
+    public Restaurant updateRestaurant(Integer restaurantId, Restaurant restaurant) {
+        Restaurant existingRestaurant = getRestaurantById(restaurantId);
+        if (existingRestaurant != null) {
+            existingRestaurant.setName(restaurant.getName());
+            existingRestaurant.setAddress(restaurant.getAddress());
+            existingRestaurant.setContact(restaurant.getContact());
+            existingRestaurant.setDescription(restaurant.getDescription());
+            return restaurantRepository.save(existingRestaurant);
+        }
+        return null;
     }
 
     public void deleteRestaurant(Integer restaurantId) {

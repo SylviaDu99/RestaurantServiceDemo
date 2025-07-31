@@ -16,7 +16,7 @@ public class Menu {
 
     private String name;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 

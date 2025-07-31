@@ -2,7 +2,6 @@ package org.example.domain;
 
 import lombok.*;
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity
@@ -20,6 +19,6 @@ public class Restaurant {
     private String contact;
     private String description;
 
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
-    private List<Menu> menus;
+    @OneToOne(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    private Menu menu;
 }

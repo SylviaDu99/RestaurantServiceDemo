@@ -14,13 +14,25 @@ public class MenuService {
         this.menuRepository = menuRepository;
     }
 
-    public Menu getMenuById(Integer id) {
-        return menuRepository.findById(id).orElse(null);
+    public Menu getMenuById(Integer menuId) {
+        return menuRepository.findById(menuId).orElse(null);
     }
+
+    public Menu updateMenu(Integer menuId, Menu menu) {
+        Menu existingMenu = getMenuById(menuId);
+        if (existingMenu != null) {
+            existingMenu.setName(menu.getName());
+            existingMenu.setCategories(menu.getCategories());
+            return menuRepository.save(existingMenu);
+        }
+        return null;
+    }
+
     public Menu saveMenu(Menu menu) {
         return menuRepository.save(menu);
     }
-    public void deleteMenu(Menu menu) {
-        menuRepository.delete(menu);
+
+    public void deleteMenu(Integer menuId) {
+        menuRepository.deleteById(menuId);
     }
 }

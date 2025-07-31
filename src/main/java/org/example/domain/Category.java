@@ -16,6 +16,8 @@ public class Category {
 
     private String name;
 
+    private double categoryPrice;
+
     @ManyToOne
     @JoinColumn(name = "menu_id")
     private Menu menu;
