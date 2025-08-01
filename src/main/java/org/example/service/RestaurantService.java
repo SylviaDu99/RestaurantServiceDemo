@@ -3,7 +3,6 @@ package org.example.service;
 import org.example.domain.Restaurant;
 import org.example.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
 @Service

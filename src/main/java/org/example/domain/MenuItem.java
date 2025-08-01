@@ -2,6 +2,8 @@ package org.example.domain;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -13,10 +15,14 @@ public class MenuItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false, unique = true)
+    @NotNull
     private String name;
     private String description;
+
+    @Digits(integer = 5, fraction = 2)
     private double price;
-    private String currency;
+
     private boolean isAvailable;
     private String imageUrl;
 

@@ -2,6 +2,8 @@ package org.example.domain;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Digits;
 import java.util.List;
 
 @Data
@@ -14,8 +16,11 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
+    @Column(nullable = false, unique = true)
     private String name;
 
+    @Digits(integer = 5, fraction = 2)
     private double categoryPrice;
 
     @ManyToOne
