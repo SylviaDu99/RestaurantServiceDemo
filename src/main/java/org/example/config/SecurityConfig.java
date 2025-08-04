@@ -1,7 +1,5 @@
 package org.example.config;
 
-import org.example.service.AuthUserDetailService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,13 +16,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    private final AuthUserDetailService authUserDetailService;
-
-    @Autowired
-    public SecurityConfig(AuthUserDetailService authUserDetailService) {
-        this.authUserDetailService = authUserDetailService;
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
