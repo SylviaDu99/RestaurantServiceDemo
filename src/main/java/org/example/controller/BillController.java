@@ -53,4 +53,19 @@ public class BillController {
         billService.deleteBill(billId);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/{billId}/notify")
+    public ResponseEntity<String> sendBillNotification(@PathVariable Integer billId, @RequestParam String email) {
+        Bill bill = billService.getBillById(billId);
+        if (bill == null) {
+            return ResponseEntity.notFound().build();
+        }
+        String body = "Customer Name: " + bill.getCustomerName() + "\nItems: " + bill.getOrderItems() + "\nTotal Cost: " + bill.getTotalCost();
+        billService.sendBillNotification(
+                email,
+                "Your Order Details",
+                body
+        );
+        return ResponseEntity.ok("Order placed and email sent.");
+    }
 }
