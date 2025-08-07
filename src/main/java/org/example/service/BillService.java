@@ -1,6 +1,8 @@
 package org.example.service;
 
+import org.example.client.NotificationClient;
 import org.example.domain.Bill;
+import org.example.dto.EmailRequest;
 import org.example.repository.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,10 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class BillService {
     private final BillRepository billRepository;
+    private final NotificationClient notificationClient;
 
     @Autowired
-    public BillService(BillRepository billRepository) {
+    public BillService(BillRepository billRepository, NotificationClient notificationClient) {
         this.billRepository = billRepository;
+        this.notificationClient = notificationClient;
     }
 
     public Bill getBillById(Integer billId) {
@@ -37,5 +41,13 @@ public class BillService {
 
     public void deleteBill(Integer billId) {
         billRepository.deleteById(billId);
+    }
+
+    public void sendBillNotification(String email, String subject, String body) {
+        EmailRequest emailRequest = new EmailRequest();
+        emailRequest.setTo(email);
+        emailRequest.setSubject(subject);
+        emailRequest.setBody(body);
+        notificationClient.sendEmail(emailRequest);
     }
 }
