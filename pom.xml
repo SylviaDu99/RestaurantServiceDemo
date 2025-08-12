@@ -69,6 +69,11 @@
             <artifactId>spring-boot-starter-web-services</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-streams</artifactId>
         </dependency>
@@ -85,14 +90,14 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
@@ -185,12 +190,6 @@
                             paketobuildpacks/ubuntu-noble-run-base:latest
                         </runImage>
                     </image>
-<!--                    <excludes>-->
-<!--                        <exclude>-->
-<!--                            <groupId>org.projectlombok</groupId>-->
-<!--                            <artifactId>lombok</artifactId>-->
-<!--                        </exclude>-->
-<!--                    </excludes>-->
                 </configuration>
             </plugin>
         </plugins>
