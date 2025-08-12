@@ -22,7 +22,7 @@ public class Bill {
     private List<OrderItem> orderItems;
 
     @NotNull
-    private boolean isCounterSale = true;
+    private boolean counterSale = true;
 
     @Positive
     private double totalCost;
