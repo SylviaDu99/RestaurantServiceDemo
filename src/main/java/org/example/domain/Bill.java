@@ -33,6 +33,9 @@ public class Bill {
     @NotNull
     private String customerPhone;
 
+    // Optional delivery address for non-counter sales
+    private String deliveryAddress;
+
     @NotNull
     @Column(updatable = false)
     private LocalDateTime createdAt;

@@ -1,7 +1,9 @@
 package org.example.controller;
 
 import org.example.domain.Bill;
+import org.example.dto.DeliveryRequest;
 import org.example.service.BillService;
+import org.example.service.DeliveryProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,10 +16,12 @@ import javax.validation.Valid;
 @RequestMapping("/api/bills")
 public class BillController {
     private final BillService billService;
+    private final DeliveryProducer deliveryProducer;
 
     @Autowired
-    public BillController(BillService billService) {
+    public BillController(BillService billService, DeliveryProducer deliveryProducer) {
         this.billService = billService;
+        this.deliveryProducer = deliveryProducer;
     }
 
     @GetMapping("/{billId}")
